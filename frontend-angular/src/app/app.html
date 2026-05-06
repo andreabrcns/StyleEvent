@@ -1,1 +1,27 @@
+<nav class="navbar">
+  <div class="nav-left">
+    <h1>StyleEvent</h1>
+
+    <a routerLink="/">Inicio</a>
+
+    <div class="dropdown">
+      <a routerLink="/catalogo">Catálogo</a>
+
+      <div class="dropdown-menu">
+        <a routerLink="/catalogo">Comuniones</a>
+        <a routerLink="/catalogo">Bodas de día</a>
+        <a routerLink="/catalogo">Bodas de noche</a>
+        <a routerLink="/catalogo">Graduaciones</a>
+        <a routerLink="/catalogo">Día a día</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-right">
+    <a routerLink="/favoritos" class="heart">♡</a>
+    <a routerLink="/login">Login</a>
+    <a routerLink="/admin">Admin</a>
+  </div>
+</nav>
+
 <router-outlet></router-outlet>
