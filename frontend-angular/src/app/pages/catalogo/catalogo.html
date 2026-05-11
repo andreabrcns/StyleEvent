@@ -1,1 +1,25 @@
-<p>catalogo works!</p>
+<section class="catalogo">
+
+    @for (vestido of vestidos; track vestido.nombre) {
+
+    <div class="card">
+
+        <img [src]="vestido.imagen">
+
+        <div class="info">
+
+            <h2>{{ vestido.nombre }}</h2>
+
+            <p>{{ vestido.categoria }}</p>
+
+            <span>{{ vestido.precio }} €</span>
+
+            <button>♡</button>
+
+        </div>
+
+    </div>
+
+    }
+
+</section>

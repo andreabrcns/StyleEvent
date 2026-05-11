@@ -68,3 +68,29 @@
 .dropdown:hover .dropdown-menu {
     display: block;
 }
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 18px;
+    }
+
+    .nav-left,
+    .nav-right {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .navbar h1 {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        font-size: 30px;
+    }
+
+    .dropdown-menu {
+        left: -40px;
+    }
+}
