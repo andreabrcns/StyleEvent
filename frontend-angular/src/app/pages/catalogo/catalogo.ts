@@ -109,5 +109,28 @@ export class Catalogo {
     }
 
   ];
+  categoriaSeleccionada = 'Todos';
+
+  filtrarCategoria(categoria: string) {
+    this.categoriaSeleccionada = categoria;
+  }
+
+  get vestidosFiltrados() {
+    return this.vestidos.filter(vestido => {
+      const coincideCategoria =
+        this.categoriaSeleccionada === 'Todos' ||
+        vestido.categoria === this.categoriaSeleccionada;
+
+      const coincidePrecio = vestido.precio <= this.precioMaximo;
+
+      return coincideCategoria && coincidePrecio;
+    });
+  }
+  precioMaximo = 250;
+
+  cambiarPrecio(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.precioMaximo = Number(input.value);
+  }
 
 }

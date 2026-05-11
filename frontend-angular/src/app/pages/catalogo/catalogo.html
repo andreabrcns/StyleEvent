@@ -1,25 +1,39 @@
-<section class="catalogo">
+<section class="catalogo-container">
 
-    @for (vestido of vestidos; track vestido.nombre) {
+    <aside class="filtros">
+        <h2>Filtros</h2>
 
-    <div class="card">
+        <button (click)="filtrarCategoria('Todos')">Todos</button>
+        <button (click)="filtrarCategoria('Boda de día')">Boda de día</button>
+        <button (click)="filtrarCategoria('Boda de noche')">Boda de noche</button>
+        <button (click)="filtrarCategoria('Graduación')">Graduación</button>
 
-        <img [src]="vestido.imagen">
+        <div class="filtro-precio">
+            <h3>Precio máximo</h3>
 
-        <div class="info">
+            <input type="range" min="0" max="250" step="10" [value]="precioMaximo" (input)="cambiarPrecio($event)">
 
-            <h2>{{ vestido.nombre }}</h2>
+            <p>{{ precioMaximo }} €</p>
+        </div>
+    </aside>
 
-            <p>{{ vestido.categoria }}</p>
+    <section class="catalogo">
 
-            <span>{{ vestido.precio }} €</span>
+        @for (vestido of vestidosFiltrados; track vestido.nombre) {
 
-            <button>♡</button>
+        <div class="card">
+            <img [src]="vestido.imagen">
 
+            <div class="info">
+                <h2>{{ vestido.nombre }}</h2>
+                <p>{{ vestido.categoria }}</p>
+                <span>{{ vestido.precio }} €</span>
+                <button>♡</button>
+            </div>
         </div>
 
-    </div>
+        }
 
-    }
+    </section>
 
 </section>
