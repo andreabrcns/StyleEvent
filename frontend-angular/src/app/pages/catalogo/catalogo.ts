@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { FavoritosService } from '../../services/favoritos';
 @Component({
   selector: 'app-catalogo',
   imports: [],
@@ -109,6 +109,19 @@ export class Catalogo {
     }
 
   ];
+  favoritos: any[] = [];
+
+  agregarFavorito(vestido: any) {
+
+    const existe = this.favoritos.includes(vestido);
+
+    if (!existe) {
+      this.favoritos.push(vestido);
+    }
+
+    console.log(this.favoritos);
+
+  }
   categoriaSeleccionada = 'Todos';
 
   filtrarCategoria(categoria: string) {
@@ -133,4 +146,16 @@ export class Catalogo {
     this.precioMaximo = Number(input.value);
   }
 
+  constructor(public favoritosService: FavoritosService) { }
+  cambiarFavorito(vestido: any) {
+
+    this.favoritosService.agregarOQuitarFavorito(vestido);
+
+  }
+
+  esFavorito(vestido: any) {
+
+    return this.favoritosService.esFavorito(vestido);
+
+  }
 }

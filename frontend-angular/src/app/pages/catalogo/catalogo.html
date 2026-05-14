@@ -28,7 +28,9 @@
                 <h2>{{ vestido.nombre }}</h2>
                 <p>{{ vestido.categoria }}</p>
                 <span>{{ vestido.precio }} €</span>
-                <button>♡</button>
+                <button class="corazon" [class.activo]="esFavorito(vestido)" (click)="cambiarFavorito(vestido)">
+                    {{ esFavorito(vestido) ? '♥' : '♡' }}
+                </button>
             </div>
         </div>
 

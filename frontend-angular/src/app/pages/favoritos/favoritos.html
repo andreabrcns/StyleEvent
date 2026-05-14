@@ -1,1 +1,36 @@
-<p>favoritos works!</p>
+<section class="favoritos">
+
+    <h1>Mis favoritos</h1>
+
+    @for (
+    vestido of favoritosService.obtenerFavoritos();
+    track vestido.nombre
+    ) {
+
+    <div class="card">
+
+        <img [src]="vestido.imagen">
+
+        <div class="info">
+
+            <h2>{{ vestido.nombre }}</h2>
+
+            <p>{{ vestido.categoria }}</p>
+
+            <span>{{ vestido.precio }} €</span>
+
+        </div>
+
+    </div>
+
+    }
+
+    @if (favoritosService.obtenerFavoritos().length === 0) {
+
+    <p class="vacio">
+        Todavía no tienes vestidos favoritos.
+    </p>
+
+    }
+
+</section>

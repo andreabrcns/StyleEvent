@@ -146,3 +146,18 @@
     font-weight: bold;
     margin-top: 12px;
 }
+
+.corazon {
+    border: none;
+    background-color: #111;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.corazon.activo {
+    background-color: #d4af37;
+    color: #111;
+}
