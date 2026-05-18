@@ -1,1 +1,23 @@
-<p>detalle-vestido works!</p>
+@if (vestido) {
+<section class="detalle">
+
+    <div class="imagen">
+        <img [src]="vestido.imagen">
+    </div>
+
+    <div class="info">
+        <h1>{{ vestido.nombre }}</h1>
+
+        <p class="categoria">{{ vestido.categoria }}</p>
+
+        <p class="precio">{{ vestido.precio }} €</p>
+
+        <p class="descripcion">{{ vestido.descripcion }}</p>
+
+        <button [class.activo]="esFavorito()" (click)="cambiarFavorito()">
+            {{ esFavorito() ? '♥ Añadido a favoritos' : '♡ Añadir a favoritos' }}
+        </button>
+    </div>
+
+</section>
+}

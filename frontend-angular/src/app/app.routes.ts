@@ -10,7 +10,7 @@ import { Admin } from './pages/admin/admin';
 export const routes: Routes = [
     { path: '', component: Home },
     { path: 'catalogo', component: Catalogo },
-    { path: 'detalle', component: DetalleVestido },
+    { path: 'detalle/:id', component: DetalleVestido },
     { path: 'login', component: Login },
     { path: 'registro', component: Registro },
     { path: 'favoritos', component: Favoritos },

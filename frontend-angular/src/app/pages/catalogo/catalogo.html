@@ -21,14 +21,15 @@
 
         @for (vestido of vestidosFiltrados; track vestido.nombre) {
 
-        <div class="card">
+        <div class="card" [routerLink]="['/detalle', vestido.id]">
             <img [src]="vestido.imagen">
 
             <div class="info">
                 <h2>{{ vestido.nombre }}</h2>
                 <p>{{ vestido.categoria }}</p>
                 <span>{{ vestido.precio }} €</span>
-                <button class="corazon" [class.activo]="esFavorito(vestido)" (click)="cambiarFavorito(vestido)">
+                <button class="corazon" [class.activo]="esFavorito(vestido)"
+                    (click)="cambiarFavorito(vestido); $event.stopPropagation()">
                     {{ esFavorito(vestido) ? '♥' : '♡' }}
                 </button>
             </div>
