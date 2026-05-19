@@ -1,1 +1,90 @@
-<p>admin works!</p>
+<section class="admin-page">
+
+    <h1>Panel de administración</h1>
+
+    <p class="intro">
+        Desde aquí el administrador podrá gestionar los vestidos del catálogo.
+    </p>
+
+    <div class="admin-container">
+
+        <div class="form-card">
+
+            <h2>Añadir vestido</h2>
+
+            <form>
+
+                <label>Nombre del vestido</label>
+                <input type="text" placeholder="Ej: Vestido boda de noche">
+
+                <label>Categoría</label>
+                <select>
+                    <option>Boda de día</option>
+                    <option>Boda de noche</option>
+                    <option>Graduación</option>
+                </select>
+
+                <label>Precio</label>
+                <input type="number" placeholder="Ej: 159.99">
+
+                <label>Imagen</label>
+                <input type="text" placeholder="/assets/vestido.png">
+
+                <button type="button">Añadir vestido</button>
+
+            </form>
+
+        </div>
+
+        <div class="list-card">
+
+            <h2>Vestidos existentes</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Vestido</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Vestido boda de día verde</td>
+                        <td>Boda de día</td>
+                        <td>129.99 €</td>
+                        <td>
+                            <button class="edit">Editar</button>
+                            <button class="delete">Eliminar</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Vestido noche negro elegante</td>
+                        <td>Boda de noche</td>
+                        <td>189.99 €</td>
+                        <td>
+                            <button class="edit">Editar</button>
+                            <button class="delete">Eliminar</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Vestido graduación fucsia</td>
+                        <td>Graduación</td>
+                        <td>159.99 €</td>
+                        <td>
+                            <button class="edit">Editar</button>
+                            <button class="delete">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
