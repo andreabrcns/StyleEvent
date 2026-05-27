@@ -20,7 +20,14 @@ export class Catalogo {
     public favoritosService: FavoritosService,
     private vestidosService: VestidosService
   ) {
-    this.vestidos = this.vestidosService.obtenerVestidos();
+    this.vestidosService.obtenerVestidos().subscribe({
+      next: (datos) => {
+        this.vestidos = datos;
+      },
+      error: (error) => {
+        console.log('Error al cargar vestidos', error);
+      }
+    });;
   }
 
   filtrarCategoria(categoria: string) {
