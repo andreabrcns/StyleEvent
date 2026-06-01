@@ -21,5 +21,8 @@ export class VestidosService {
   crearVestido(vestido: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, vestido);
   }
+  eliminarVestido(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
 
 }

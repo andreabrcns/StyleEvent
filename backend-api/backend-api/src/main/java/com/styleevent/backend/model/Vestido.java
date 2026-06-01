@@ -1,9 +1,13 @@
 package com.styleevent.backend.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 
 @Document(collection = "vestidos")
 public class Vestido {
+    @MongoId(FieldType.OBJECT_ID)
+    private String id;
 
     private String nombre;
     private double precio;
@@ -13,13 +17,11 @@ public class Vestido {
 
     public Vestido() {
     }
-
-    public Vestido(String nombre, double precio, String categoria, String imagen, String descripcion) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.categoria = categoria;
-        this.imagen = imagen;
-        this.descripcion = descripcion;
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {

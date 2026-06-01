@@ -37,4 +37,9 @@ public class VestidoController {
     public Vestido crearVestido(@RequestBody Vestido vestido) {
         return mongoTemplate.save(vestido);
     }
+    @DeleteMapping("/{id}")
+        public void eliminarVestido(@PathVariable String id) {
+            Query query = new Query(Criteria.where("_id").is(new org.bson.types.ObjectId(id)));
+            mongoTemplate.remove(query, Vestido.class, "vestidos");
+    }
 }

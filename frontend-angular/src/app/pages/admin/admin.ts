@@ -56,4 +56,16 @@ vestidos: any[] = [];
       }
     });
   }
+  eliminarVestido(id: string) {
+    this.vestidosService.eliminarVestido(id).subscribe({
+      next: () => {
+        this.mensaje = 'Vestido eliminado correctamente';
+        this.cargarVestidos();
+      },
+      error: (error) => {
+        console.log(error);
+        this.mensaje = 'Error al eliminar el vestido';
+      }
+    });
+  }
 }

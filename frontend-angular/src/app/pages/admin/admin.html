@@ -80,14 +80,16 @@
                 </thead>
 
                 <tbody>
-                    @for (vestido of vestidos; track vestido.nombre) {
+                    @for (vestido of vestidos; track vestido.id) {
                         <tr>
                         <td>{{ vestido.nombre }}</td>
                         <td>{{ vestido.categoria }}</td>
                         <td>{{ vestido.precio }} €</td>
                         <td>
                             <button class="edit">Editar</button>
-                            <button class="delete">Eliminar</button>
+                            <button class="delete" (click)="eliminarVestido(vestido.id)">
+                                Eliminar
+                            </button>
                         </td>
                         </tr>
                     }
