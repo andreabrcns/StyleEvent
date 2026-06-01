@@ -15,22 +15,51 @@
             <form>
 
                 <label>Nombre del vestido</label>
-                <input type="text" placeholder="Ej: Vestido boda de noche">
+                <input
+                    type="text"
+                    placeholder="Ej: Vestido boda de noche"
+                    [(ngModel)]="vestido.nombre"
+                    name="nombre"
+                >
 
                 <label>Categoría</label>
-                <select>
+                <select
+                    [(ngModel)]="vestido.categoria"
+                    name="categoria"
+                >
                     <option>Boda de día</option>
                     <option>Boda de noche</option>
                     <option>Graduación</option>
                 </select>
 
                 <label>Precio</label>
-                <input type="number" placeholder="Ej: 159.99">
+                <input
+                    type="number"
+                    placeholder="Ej: 159.99"
+                    [(ngModel)]="vestido.precio"
+                    name="precio"
+                >
 
                 <label>Imagen</label>
-                <input type="text" placeholder="/assets/vestido.png">
+                <input
+                    type="text"
+                    placeholder="/assets/vestido.png"
+                    [(ngModel)]="vestido.imagen"
+                    name="imagen"
+                >
 
-                <button type="button">Añadir vestido</button>
+                <label>Descripción</label>
+                <textarea
+                    placeholder="Descripción del vestido"
+                    [(ngModel)]="vestido.descripcion"
+                    name="descripcion"
+                ></textarea>
+
+                <button type="button" (click)="anadirVestido()">
+                    Añadir vestido
+                </button>
+
+                <p class="mensaje">{{ mensaje }}</p>
 
             </form>
 
@@ -51,35 +80,17 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>Vestido boda de día verde</td>
-                        <td>Boda de día</td>
-                        <td>129.99 €</td>
+                    @for (vestido of vestidos; track vestido.nombre) {
+                        <tr>
+                        <td>{{ vestido.nombre }}</td>
+                        <td>{{ vestido.categoria }}</td>
+                        <td>{{ vestido.precio }} €</td>
                         <td>
                             <button class="edit">Editar</button>
                             <button class="delete">Eliminar</button>
                         </td>
-                    </tr>
-
-                    <tr>
-                        <td>Vestido noche negro elegante</td>
-                        <td>Boda de noche</td>
-                        <td>189.99 €</td>
-                        <td>
-                            <button class="edit">Editar</button>
-                            <button class="delete">Eliminar</button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Vestido graduación fucsia</td>
-                        <td>Graduación</td>
-                        <td>159.99 €</td>
-                        <td>
-                            <button class="edit">Editar</button>
-                            <button class="delete">Eliminar</button>
-                        </td>
-                    </tr>
+                        </tr>
+                    }
                 </tbody>
             </table>
 

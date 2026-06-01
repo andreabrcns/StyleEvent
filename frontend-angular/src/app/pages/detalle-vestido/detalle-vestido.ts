@@ -18,7 +18,7 @@ export class DetalleVestido {
     private vestidosService: VestidosService,
     public favoritosService: FavoritosService
   ) {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.route.snapshot.paramMap.get('id') || '';
     this.vestido = this.vestidosService.obtenerVestidoPorId(id);
   }
 

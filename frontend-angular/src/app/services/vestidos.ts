@@ -15,5 +15,11 @@ export class VestidosService {
   obtenerVestidos(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
+  obtenerVestidoPorId(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+  crearVestido(vestido: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, vestido);
+  }
 
 }

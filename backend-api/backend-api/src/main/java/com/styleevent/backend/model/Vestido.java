@@ -1,8 +1,10 @@
 package com.styleevent.backend.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "vestidos")
 public class Vestido {
 
-    private String id;
     private String nombre;
     private double precio;
     private String categoria;
@@ -12,17 +14,12 @@ public class Vestido {
     public Vestido() {
     }
 
-    public Vestido(String id, String nombre, double precio, String categoria, String imagen, String descripcion) {
-        this.id = id;
+    public Vestido(String nombre, double precio, String categoria, String imagen, String descripcion) {
         this.nombre = nombre;
         this.precio = precio;
         this.categoria = categoria;
         this.imagen = imagen;
         this.descripcion = descripcion;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getNombre() {
@@ -43,5 +40,25 @@ public class Vestido {
 
     public String getDescripcion() {
         return descripcion;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

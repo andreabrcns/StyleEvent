@@ -1,32 +1,40 @@
 package com.styleevent.backend.controller;
 
 import com.styleevent.backend.model.Vestido;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.web.bind.annotation.*;
+
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/vestidos")
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class VestidoController {
 
-    @GetMapping("/api/vestidos")
+    private final MongoTemplate mongoTemplate;
+
+    public VestidoController(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
+
+
+    @GetMapping
     public List<Vestido> obtenerVestidos() {
+        return mongoTemplate.findAll(Vestido.class, "vestidos");
+    }
+    @GetMapping("/{id}")
+    public Vestido obtenerVestidoPorId(@PathVariable String id) {
+        Query query = new Query(Criteria.where("_id").is(id));
+        return mongoTemplate.findOne(query, Vestido.class, "vestidos");
+    }
 
-        return List.of(
-                new Vestido(
-                        "1",
-                        "Vestido boda de día verde",
-                        129.99,
-                        "Boda de día",
-                        "/assets/vestido2catalogobdn.png",
-                        "Vestido elegante para bodas de día con un diseño fresco y sofisticado."),
 
-                new Vestido(
-                        "2",
-                        "Vestido noche negro elegante",
-                        189.99,
-                        "Boda de noche",
-                        "/assets/vestido3catalogobdd_g.png",
-                        "Vestido negro elegante ideal para eventos y celebraciones nocturnas."));
+    @PostMapping
+    public Vestido crearVestido(@RequestBody Vestido vestido) {
+        return mongoTemplate.save(vestido);
     }
 }
