@@ -9,20 +9,26 @@ import { Observable } from 'rxjs';
 export class VestidosService {
 
   private apiUrl = 'http://localhost:8080/api/vestidos';
-  
-  constructor(private http: HttpClient) { }
 
-  obtenerVestidos(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  constructor(private http: HttpClient) {}
+
+  obtenerVestidos(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
   }
+
   obtenerVestidoPorId(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
+
   crearVestido(vestido: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, vestido);
   }
+
   eliminarVestido(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 
+  editarVestido(id: string, vestido: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, vestido);
+  }
 }

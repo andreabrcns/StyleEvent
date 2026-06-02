@@ -10,7 +10,7 @@ import { VestidosService } from '../../services/vestidos';
 })
 export class Admin {
 
-vestidos: any[] = [];
+  vestidos: any[] = [];
 
   vestido = {
     nombre: '',
@@ -22,9 +22,13 @@ vestidos: any[] = [];
 
   mensaje = '';
 
+  editando = false;
+  idEditando = '';
+
   constructor(private vestidosService: VestidosService) {
     this.cargarVestidos();
   }
+
   cargarVestidos() {
     this.vestidosService.obtenerVestidos().subscribe({
       next: (datos) => {
@@ -37,25 +41,48 @@ vestidos: any[] = [];
   }
 
   anadirVestido() {
-    this.vestidosService.crearVestido(this.vestido).subscribe({
-      next: () => {
-        this.mensaje = 'Vestido añadido correctamente';
-
-        this.vestido = {
-          nombre: '',
-          categoria: 'Boda de día',
-          precio: 0,
-          imagen: '',
-          descripcion: ''
-        };
-        this.cargarVestidos();
-      },
-      error: (error) => {
-        console.log(error);
-        this.mensaje = 'Error al añadir el vestido';
-      }
-    });
+    if (this.editando) {
+      this.vestidosService.editarVestido(this.idEditando, this.vestido).subscribe({
+        next: () => {
+          this.mensaje = 'Vestido editado correctamente';
+          this.limpiarFormulario();
+          this.cargarVestidos();
+        },
+        error: (error) => {
+          console.log(error);
+          this.mensaje = 'Error al editar el vestido';
+        }
+      });
+    } else {
+      this.vestidosService.crearVestido(this.vestido).subscribe({
+        next: () => {
+          this.mensaje = 'Vestido añadido correctamente';
+          this.limpiarFormulario();
+          this.cargarVestidos();
+        },
+        error: (error) => {
+          console.log(error);
+          this.mensaje = 'Error al añadir el vestido';
+        }
+      });
+    }
   }
+
+  editarVestido(vestido: any) {
+    this.editando = true;
+    this.idEditando = vestido.id;
+
+    this.vestido = {
+      nombre: vestido.nombre,
+      categoria: vestido.categoria,
+      precio: vestido.precio,
+      imagen: vestido.imagen,
+      descripcion: vestido.descripcion
+    };
+
+    this.mensaje = 'Editando vestido';
+  }
+
   eliminarVestido(id: string) {
     this.vestidosService.eliminarVestido(id).subscribe({
       next: () => {
@@ -67,5 +94,18 @@ vestidos: any[] = [];
         this.mensaje = 'Error al eliminar el vestido';
       }
     });
+  }
+
+  limpiarFormulario() {
+    this.editando = false;
+    this.idEditando = '';
+
+    this.vestido = {
+      nombre: '',
+      categoria: 'Boda de día',
+      precio: 0,
+      imagen: '',
+      descripcion: ''
+    };
   }
 }

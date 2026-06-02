@@ -56,7 +56,7 @@
                 ></textarea>
 
                 <button type="button" (click)="anadirVestido()">
-                    Añadir vestido
+                    {{ editando ? 'Guardar cambios' : 'Añadir vestido' }}
                 </button>
 
                 <p class="mensaje">{{ mensaje }}</p>
@@ -86,7 +86,9 @@
                         <td>{{ vestido.categoria }}</td>
                         <td>{{ vestido.precio }} €</td>
                         <td>
-                            <button class="edit">Editar</button>
+                            <button class="edit" (click)="editarVestido(vestido)">
+                                Editar
+                            </button>
                             <button class="delete" (click)="eliminarVestido(vestido.id)">
                                 Eliminar
                             </button>

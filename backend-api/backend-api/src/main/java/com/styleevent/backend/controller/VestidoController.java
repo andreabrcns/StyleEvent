@@ -35,11 +35,16 @@ public class VestidoController {
 
     @PostMapping
     public Vestido crearVestido(@RequestBody Vestido vestido) {
-        return mongoTemplate.save(vestido);
+        return mongoTemplate.save(vestido, "vestidos");
     }
     @DeleteMapping("/{id}")
         public void eliminarVestido(@PathVariable String id) {
             Query query = new Query(Criteria.where("_id").is(new org.bson.types.ObjectId(id)));
             mongoTemplate.remove(query, Vestido.class, "vestidos");
+    }
+    @PutMapping("/{id}")
+        public Vestido editarVestido(@PathVariable String id, @RequestBody Vestido vestido) {
+            vestido.setId(id);
+            return mongoTemplate.save(vestido, "vestidos");
     }
 }
