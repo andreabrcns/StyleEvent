@@ -9,12 +9,22 @@
         <form>
 
             <label>Email</label>
-            <input type="email" placeholder="Introduce tu email">
-
+            <input
+                type="email"
+                placeholder="Introduce tu email"
+                [(ngModel)]="email"
+                name="email"
+            >
             <label>Contraseña</label>
-            <input type="password" placeholder="Introduce tu contraseña">
+            <input
+                type="password"
+                placeholder="Introduce tu contraseña"
+                [(ngModel)]="password"
+                name="password"
+            >
 
-            <button type="button">Entrar</button>
+            <button type="button" (click)="iniciarSesion()">Entrar</button>
+            <p class="mensaje">{{ mensaje }}</p>
 
         </form>
 
