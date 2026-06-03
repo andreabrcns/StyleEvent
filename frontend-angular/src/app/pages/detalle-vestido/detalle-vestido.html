@@ -1,23 +1,30 @@
-@if (vestido) {
 <section class="detalle">
 
+  @if (vestido) {
+
     <div class="imagen">
-        <img [src]="vestido.imagen">
+      <img [src]="vestido.imagen">
     </div>
 
     <div class="info">
-        <h1>{{ vestido.nombre }}</h1>
+      <h1>{{ vestido.nombre }}</h1>
+      <p class="categoria">{{ vestido.categoria }}</p>
+      <p class="precio">{{ vestido.precio }} €</p>
+      <p class="descripcion">{{ vestido.descripcion }}</p>
 
-        <p class="categoria">{{ vestido.categoria }}</p>
+      <button (click)="cambiarFavorito()">
+        {{ esFavorito() ? '♥ Añadido a favoritos' : '♡ Añadir a favoritos' }}
+      </button>
 
-        <p class="precio">{{ vestido.precio }} €</p>
-
-        <p class="descripcion">{{ vestido.descripcion }}</p>
-
-        <button [class.activo]="esFavorito()" (click)="cambiarFavorito()">
-            {{ esFavorito() ? '♥ Añadido a favoritos' : '♡ Añadir a favoritos' }}
-        </button>
+      <button (click)="agregarCarrito()">
+        Añadir al carrito
+      </button>
     </div>
 
+  } @else {
+
+    <h2>{{ mensaje }}</h2>
+
+  }
+
 </section>
-}

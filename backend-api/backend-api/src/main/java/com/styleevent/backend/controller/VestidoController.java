@@ -27,10 +27,10 @@ public class VestidoController {
         return mongoTemplate.findAll(Vestido.class, "vestidos");
     }
     @GetMapping("/{id}")
-    public Vestido obtenerVestidoPorId(@PathVariable String id) {
-        Query query = new Query(Criteria.where("_id").is(id));
-        return mongoTemplate.findOne(query, Vestido.class, "vestidos");
-    }
+        public Vestido obtenerVestidoPorId(@PathVariable String id) {
+            Query query = new Query(Criteria.where("_id").is(new org.bson.types.ObjectId(id)));
+            return mongoTemplate.findOne(query, Vestido.class, "vestidos");
+        }
 
 
     @PostMapping

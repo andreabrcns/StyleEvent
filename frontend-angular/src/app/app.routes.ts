@@ -6,6 +6,7 @@ import { Login } from './pages/login/login';
 import { Registro } from './pages/registro/registro';
 import { Favoritos } from './pages/favoritos/favoritos';
 import { Admin } from './pages/admin/admin';
+import { Carrito } from './pages/carrito/carrito';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -14,5 +15,6 @@ export const routes: Routes = [
     { path: 'login', component: Login },
     { path: 'registro', component: Registro },
     { path: 'favoritos', component: Favoritos },
-    { path: 'admin', component: Admin }
+    { path: 'admin', component: Admin },
+    { path: 'carrito', component: Carrito }
 ];
