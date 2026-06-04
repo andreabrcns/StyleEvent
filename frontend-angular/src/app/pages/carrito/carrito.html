@@ -6,32 +6,51 @@
     <p class="vacio">Todavía no tienes vestidos en el carrito.</p>
   }
 
-  @for (vestido of carritoService.obtenerCarrito(); track vestido.id) {
+
+  @for (vestido of carritoService.obtenerCarrito(); track vestido.vestidoId) {
+
     <div class="carrito-card">
 
       <img [src]="vestido.imagen">
 
       <div class="info">
+
         <h2>{{ vestido.nombre }}</h2>
+
         <p>{{ vestido.categoria }}</p>
+
         <span>{{ vestido.precio }} €</span>
+
       </div>
 
-      <button (click)="carritoService.eliminarDelCarrito(vestido.id)">
+
+      <button (click)="carritoService.eliminarCarrito(vestido)">
         Eliminar
       </button>
 
+
     </div>
+
   }
+
+
 
   @if (carritoService.obtenerCarrito().length > 0) {
-    <div class="total">
-      <h2>Total: {{ carritoService.calcularTotal() }} €</h2>
 
-      <button>
+    <div class="total">
+
+      <h2>
+        Total: {{ carritoService.totalCarrito() }} €
+      </h2>
+
+
+      <button (click)="carritoService.vaciarCarrito()">
         Finalizar compra
       </button>
+
     </div>
+
   }
+
 
 </section>

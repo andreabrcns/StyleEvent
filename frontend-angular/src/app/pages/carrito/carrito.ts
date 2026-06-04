@@ -7,6 +7,14 @@ import { CarritoService } from '../../services/carrito';
   templateUrl: './carrito.html',
   styleUrl: './carrito.css',
 })
+
 export class Carrito {
-  constructor(public carritoService: CarritoService) {}
+
+
+  constructor(public carritoService: CarritoService) {
+
+    this.carritoService.cargarCarrito();
+
+  }
+
 }
