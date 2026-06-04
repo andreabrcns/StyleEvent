@@ -1,36 +1,33 @@
-<section class="favoritos">
+<section class="favoritos-page">
 
-    <h1>Mis favoritos</h1>
+  <h1>Mis favoritos</h1>
 
-    @for (
-    vestido of favoritosService.obtenerFavoritos();
-    track vestido.nombre
-    ) {
+  @if (favoritosService.obtenerFavoritos().length === 0) {
+    <p class="vacio">Todavía no tienes vestidos favoritos.</p>
+  }
 
-    <div class="card">
+  <div class="favoritos-grid">
+
+    @for (vestido of favoritosService.obtenerFavoritos(); track vestido.vestidoId) {
+
+      <div class="favorito-card">
 
         <img [src]="vestido.imagen">
 
-        <div class="info">
+        <h2>{{ vestido.nombre }}</h2>
 
-            <h2>{{ vestido.nombre }}</h2>
+        <p>{{ vestido.categoria }}</p>
 
-            <p>{{ vestido.categoria }}</p>
+        <span>{{ vestido.precio }} €</span>
 
-            <span>{{ vestido.precio }} €</span>
+        <button (click)="favoritosService.agregarOQuitarFavorito(vestido)">
+          Quitar de favoritos
+        </button>
 
-        </div>
-
-    </div>
-
-    }
-
-    @if (favoritosService.obtenerFavoritos().length === 0) {
-
-    <p class="vacio">
-        Todavía no tienes vestidos favoritos.
-    </p>
+      </div>
 
     }
+
+  </div>
 
 </section>

@@ -9,7 +9,9 @@ export class AuthService {
 
   private apiUrl = 'http://localhost:8080/api/usuarios';
 
-  usuarioActual: any = null;
+  usuarioActual: any = JSON.parse(
+    localStorage.getItem('usuario') || 'null'
+  );
 
   constructor(private http: HttpClient) {}
 
@@ -22,10 +24,15 @@ export class AuthService {
 
   guardarUsuario(usuario: any) {
     this.usuarioActual = usuario;
+    localStorage.setItem(
+      'usuario',
+      JSON.stringify(usuario)
+    );
   }
 
   cerrarSesion() {
     this.usuarioActual = null;
+    localStorage.removeItem('usuario');
   }
 
   esAdmin() {

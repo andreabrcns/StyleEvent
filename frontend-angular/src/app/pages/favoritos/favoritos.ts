@@ -10,6 +10,8 @@ import { FavoritosService } from '../../services/favoritos';
 
 export class Favoritos {
 
-  constructor(public favoritosService: FavoritosService) { }
+  constructor(public favoritosService: FavoritosService) {
+    this.favoritosService.cargarFavoritos();
+  }
 
 }
