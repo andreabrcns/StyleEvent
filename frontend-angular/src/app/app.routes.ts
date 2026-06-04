@@ -7,7 +7,7 @@ import { Registro } from './pages/registro/registro';
 import { Favoritos } from './pages/favoritos/favoritos';
 import { Admin } from './pages/admin/admin';
 import { Carrito } from './pages/carrito/carrito';
-
+import { adminGuard } from './guards/admin-guard';
 export const routes: Routes = [
     { path: '', component: Home },
     { path: 'catalogo', component: Catalogo },
@@ -15,6 +15,10 @@ export const routes: Routes = [
     { path: 'login', component: Login },
     { path: 'registro', component: Registro },
     { path: 'favoritos', component: Favoritos },
-    { path: 'admin', component: Admin },
-    { path: 'carrito', component: Carrito }
+    { path: 'carrito', component: Carrito },
+    {
+        path: 'admin',
+        component: Admin,
+        canActivate: [adminGuard]
+    }
 ];
