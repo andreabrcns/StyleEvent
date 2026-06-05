@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { VestidosService } from '../../services/vestidos';
 import { VentasService } from '../../services/ventas';
+
 @Component({
   selector: 'app-admin',
   imports: [FormsModule],
   templateUrl: './admin.html',
   styleUrl: './admin.css',
 })
-export class Admin {
+export class Admin implements OnInit {
 
   vestidos: any[] = [];
   ventas: any[] = [];
@@ -26,24 +27,34 @@ export class Admin {
   editando = false;
   idEditando = '';
 
-  constructor(private vestidosService: VestidosService, private ventasService: VentasService) {
+  constructor(
+    private vestidosService: VestidosService,
+    private ventasService: VentasService,
+    private cd: ChangeDetectorRef
+  ) {}
+
+  ngOnInit() {
     this.cargarVestidos();
     this.cargarVentas();
   }
+
   cargarVentas() {
     this.ventasService.obtenerVentas().subscribe({
       next: (datos) => {
         this.ventas = datos;
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.log(error);
       }
     });
   }
+
   cargarVestidos() {
     this.vestidosService.obtenerVestidos().subscribe({
       next: (datos) => {
         this.vestidos = datos;
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.log(error);
