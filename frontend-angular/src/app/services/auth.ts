@@ -36,10 +36,10 @@ export class AuthService {
   }
 
   esAdmin() {
-    return this.usuarioActual?.rol === 'ADMIN';
+    return this.estaLogueado() && this.usuarioActual?.rol === 'ADMIN';
   }
 
   estaLogueado() {
-    return this.usuarioActual !== null;
+    return this.usuarioActual !== null && this.usuarioActual.token !== undefined;
   }
 }

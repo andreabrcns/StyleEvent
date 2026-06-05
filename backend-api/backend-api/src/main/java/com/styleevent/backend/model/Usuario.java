@@ -14,6 +14,7 @@ public class Usuario {
     private String email;
     private String password;
     private String rol;
+    private String token;
 
     public Usuario() {
     }
@@ -56,5 +57,13 @@ public class Usuario {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
