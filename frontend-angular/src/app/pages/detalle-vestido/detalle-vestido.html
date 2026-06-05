@@ -2,23 +2,51 @@
 
   @if (vestido) {
 
-    <div class="imagen">
-      <img [src]="vestido.imagen">
-    </div>
+    <div class="detalle-card">
 
-    <div class="info">
-      <h1>{{ vestido.nombre }}</h1>
-      <p class="categoria">{{ vestido.categoria }}</p>
-      <p class="precio">{{ vestido.precio }} €</p>
-      <p class="descripcion">{{ vestido.descripcion }}</p>
+      <div class="imagen">
+        <img [src]="vestido.imagen">
+      </div>
 
-      <button (click)="cambiarFavorito()">
-        {{ esFavorito() ? '♥ Añadido a favoritos' : '♡ Añadir a favoritos' }}
-      </button>
+      <div class="info">
 
-      <button (click)="agregarCarrito()">
-        Añadir al carrito
-      </button>
+        <span class="etiqueta">{{ vestido.categoria }}</span>
+
+        <h1>{{ vestido.nombre }}</h1>
+
+        <p class="descripcion">{{ vestido.descripcion }}</p>
+
+        <p class="precio">{{ vestido.precio }} €</p>
+
+        <div class="acciones">
+          <button class="favorito" (click)="cambiarFavorito()">
+            {{ esFavorito() ? '♥ Añadido a favoritos' : '♡ Añadir a favoritos' }}
+          </button>
+
+          <button class="carrito" (click)="agregarCarrito()">
+            Añadir al carrito
+          </button>
+        </div>
+
+        <div class="extra-info">
+          <div>
+            <h3>Envío rápido</h3>
+            <p>Entrega estimada en 3-5 días laborables.</p>
+          </div>
+
+          <div>
+            <h3>Pago seguro</h3>
+            <p>Compra protegida mediante PayPal Sandbox.</p>
+          </div>
+
+          <div>
+            <h3>Evento recomendado</h3>
+            <p>{{ vestido.categoria }}</p>
+          </div>
+        </div>
+
+      </div>
+
     </div>
 
   } @else {

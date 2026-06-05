@@ -1,86 +1,146 @@
 .detalle {
-    display: flex;
-    gap: 60px;
-    padding: 70px;
-    background-color: #f6f1ec;
-    min-height: 100vh;
-    align-items: center;
+  min-height: 100vh;
+  background-color: #f6f1ec;
+  padding: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detalle-card {
+  width: 100%;
+  max-width: 1050px;
+  background-color: white;
+  border-radius: 32px;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16);
 }
 
 .imagen {
-    width: 45%;
+  width: 100%;
+  height: 100%;
 }
 
 .imagen img {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  min-height: 720px;
+  object-fit: cover;
 }
 
 .info {
-    width: 45%;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.etiqueta {
+  color: #d4af37;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
 }
 
 .info h1 {
-    font-size: 52px;
-    font-family: Georgia, serif;
-    margin-bottom: 20px;
-}
-
-.categoria {
-    color: #777;
-    font-size: 20px;
-    margin-bottom: 15px;
-}
-
-.precio {
-    font-size: 38px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    color: #111;
+  font-size: 50px;
+  font-family: Georgia, serif;
+  margin-bottom: 25px;
+  color: #111;
+  line-height: 1.1;
 }
 
 .descripcion {
-    font-size: 20px;
-    line-height: 1.7;
-    color: #555;
-    margin-bottom: 35px;
+  font-size: 19px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 28px;
 }
 
-.info button {
-    background-color: #111;
-    color: white;
-    border: none;
-    padding: 16px 35px;
-    font-size: 18px;
-    border-radius: 10px;
-    cursor: pointer;
+.precio {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #111;
 }
 
-.info button:hover {
-    background-color: #d4af37;
-    color: black;
+.acciones {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 35px;
 }
 
-@media screen and (max-width: 768px) {
-
-    .detalle {
-        flex-direction: column;
-        padding: 30px;
-    }
-
-    .imagen,
-    .info {
-        width: 100%;
-    }
-
-    .info h1 {
-        font-size: 38px;
-    }
-
+.acciones button {
+  border: none;
+  padding: 15px 22px;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.info button.activo {
-    background-color: #d4af37;
-    color: #111;
+.favorito {
+  background-color: #f6f1ec;
+  color: #111;
+}
+
+.carrito {
+  background-color: #111;
+  color: white;
+}
+
+.acciones button:hover {
+  background-color: #d4af37;
+  color: #111;
+}
+
+.extra-info {
+  display: grid;
+  gap: 15px;
+}
+
+.extra-info div {
+  background-color: #f6f1ec;
+  padding: 18px;
+  border-radius: 16px;
+}
+
+.extra-info h3 {
+  font-family: Georgia, serif;
+  margin-bottom: 6px;
+  color: #111;
+}
+
+.extra-info p {
+  color: #555;
+  margin: 0;
+}
+
+@media screen and (max-width: 900px) {
+  .detalle {
+    padding: 30px;
+  }
+
+  .detalle-card {
+    grid-template-columns: 1fr;
+  }
+
+  .imagen img {
+    min-height: 430px;
+  }
+
+  .info {
+    padding: 35px;
+  }
+
+  .info h1 {
+    font-size: 36px;
+  }
+
+  .acciones {
+    flex-direction: column;
+  }
 }
