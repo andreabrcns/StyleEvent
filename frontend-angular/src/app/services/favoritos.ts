@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +22,9 @@ export class FavoritosService {
     if (usuario) {
       this.http.get<any[]>(`${this.apiUrl}/${usuario.id}`).subscribe({
         next: (datos) => {
-          this.favoritos = datos;
+          this.favoritos = datos.filter((favorito, index, array) =>
+            index === array.findIndex(f => f.vestidoId === favorito.vestidoId)
+          );
         },
         error: (error) => {
           console.log(error);
@@ -34,24 +35,18 @@ export class FavoritosService {
 
   agregarOQuitarFavorito(vestido: any) {
     const usuario = this.authService.usuarioActual;
-    
+
     if (!usuario) {
       alert('Debes iniciar sesión para guardar favoritos');
       return;
     }
 
-    const idVestido = vestido.id || vestido.vestidoId;
+    const idVestido = vestido.vestidoId || vestido.id;
+
     const existe = this.favoritos.find(v => v.vestidoId === idVestido);
 
     if (existe) {
-      this.http.delete(`${this.apiUrl}/${usuario.id}/${idVestido}`).subscribe({
-        next: () => {
-          this.favoritos = this.favoritos.filter(v => v.vestidoId !== idVestido);
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      });
+      this.eliminarFavorito(existe);
     } else {
       const favorito = {
         usuarioId: usuario.id,
@@ -63,10 +58,9 @@ export class FavoritosService {
         descripcion: vestido.descripcion
       };
 
-
       this.http.post<any>(this.apiUrl, favorito).subscribe({
-        next: (nuevoFavorito) => {
-          this.favoritos.push(nuevoFavorito);
+        next: () => {
+          this.cargarFavoritos();
         },
         error: (error) => {
           console.log(error);
@@ -75,12 +69,26 @@ export class FavoritosService {
     }
   }
 
+  eliminarFavorito(vestido: any) {
+    const usuario = this.authService.usuarioActual;
+    const idVestido = vestido.vestidoId || vestido.id;
+
+    this.http.delete(`${this.apiUrl}/${usuario.id}/${idVestido}`).subscribe({
+      next: () => {
+        this.cargarFavoritos();
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+
   esFavorito(vestido: any) {
     if (!vestido) {
       return false;
     }
 
-    const idVestido = vestido.id || vestido.vestidoId;
+    const idVestido = vestido.vestidoId || vestido.id;
 
     return this.favoritos.some(v => v.vestidoId === idVestido);
   }

@@ -14,15 +14,15 @@
 
         <img [src]="vestido.imagen">
 
-        <h2>{{ vestido.nombre }}</h2>
+        <div class="favorito-info">
+          <h2>{{ vestido.nombre }}</h2>
+          <p>{{ vestido.categoria }}</p>
+          <span>{{ vestido.precio }} €</span>
 
-        <p>{{ vestido.categoria }}</p>
-
-        <span>{{ vestido.precio }} €</span>
-
-        <button (click)="favoritosService.agregarOQuitarFavorito(vestido)">
-          Quitar de favoritos
-        </button>
+          <button (click)="favoritosService.eliminarFavorito(vestido)">
+            Quitar de favoritos
+          </button>
+        </div>
 
       </div>
 

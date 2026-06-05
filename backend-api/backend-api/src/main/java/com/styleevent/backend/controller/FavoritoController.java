@@ -27,6 +27,18 @@ public class FavoritoController {
 
     @PostMapping
     public Favorito guardarFavorito(@RequestBody Favorito favorito) {
+
+        Query query = new Query(
+                Criteria.where("usuarioId").is(favorito.getUsuarioId())
+                        .and("vestidoId").is(favorito.getVestidoId())
+        );
+
+        Favorito favoritoExistente = mongoTemplate.findOne(query, Favorito.class, "favoritos");
+
+        if (favoritoExistente != null) {
+            return favoritoExistente;
+        }
+
         return mongoTemplate.save(favorito, "favoritos");
     }
 
