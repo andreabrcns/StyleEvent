@@ -1,44 +1,84 @@
-<section class="catalogo-container">
+<section class="catalogo-page">
+
+  <div class="catalogo-header">
+    <span>Catálogo StyleEvent</span>
+    <h1>Encuentra tu vestido ideal</h1>
+    <p>Filtra por tipo de evento y presupuesto para descubrir el look perfecto.</p>
+  </div>
+
+  <div class="catalogo-container">
 
     <aside class="filtros">
-        <h2>Filtros</h2>
+      <h2>Filtros</h2>
 
-        <button (click)="filtrarCategoria('Todos')">Todos</button>
+      <h3>Categoría</h3>
 
-        @for (categoria of categorias; track categoria.id) {
-        <button (click)="filtrarCategoria(categoria.nombre)">
-            {{ categoria.nombre }}
+      <button
+        [class.activo]="categoriaSeleccionada === 'Todos'"
+        (click)="filtrarCategoria('Todos')"
+      >
+        Todos
+      </button>
+
+      @for (categoria of categorias; track categoria.id) {
+        <button
+          [class.activo]="categoriaSeleccionada === categoria.nombre"
+          (click)="filtrarCategoria(categoria.nombre)"
+        >
+          {{ categoria.nombre }}
         </button>
-        }
-        <div class="filtro-precio">
-            <h3>Precio máximo</h3>
+      }
 
-            <input type="range" min="0" max="500" step="10" [value]="precioMaximo" (input)="cambiarPrecio($event)">
+      <div class="filtro-precio">
+        <h3>Precio máximo</h3>
 
-            <p>{{ precioMaximo }} €</p>
-        </div>
+        <input
+          type="range"
+          min="0"
+          max="500"
+          step="10"
+          [value]="precioMaximo"
+          (input)="cambiarPrecio($event)"
+        >
+
+        <p>{{ precioMaximo }} €</p>
+      </div>
     </aside>
 
     <section class="catalogo">
 
-        @for (vestido of vestidosFiltrados; track vestido.nombre) {
+      @for (vestido of vestidosFiltrados; track vestido.id) {
 
-        <div class="card" [routerLink]="['/detalle', vestido.id]">
-            <img [src]="vestido.imagen">
+        <div class="card">
 
-            <div class="info">
-                <h2>{{ vestido.nombre }}</h2>
-                <p>{{ vestido.categoria }}</p>
-                <span>{{ vestido.precio }} €</span>
-                <button class="corazon" [class.activo]="esFavorito(vestido)"
-                    (click)="cambiarFavorito(vestido); $event.stopPropagation()">
-                    {{ esFavorito(vestido) ? '♥' : '♡' }}
-                </button>
-            </div>
+          <button
+            class="corazon"
+            [class.activo]="esFavorito(vestido)"
+            (click)="cambiarFavorito(vestido); $event.stopPropagation()"
+          >
+            {{ esFavorito(vestido) ? '♥' : '♡' }}
+          </button>
+
+          <img [src]="vestido.imagen" [routerLink]="['/detalle', vestido.id]">
+
+          <div class="info">
+            <p class="categoria">{{ vestido.categoria }}</p>
+
+            <h2>{{ vestido.nombre }}</h2>
+
+            <span>{{ vestido.precio }} €</span>
+
+            <button class="detalle-btn" [routerLink]="['/detalle', vestido.id]">
+              Ver detalle
+            </button>
+          </div>
+
         </div>
 
-        }
+      }
 
     </section>
+
+  </div>
 
 </section>
