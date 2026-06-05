@@ -80,3 +80,30 @@
     text-align: center;
   }
 }
+
+.checkout {
+  width: 420px;
+  margin: 40px auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.checkout h3 {
+  font-family: Georgia, serif;
+  margin: 20px 0 15px;
+}
+
+.checkout input {
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.checkout button {
+  width: 100%;
+  margin-top: 15px;
+}

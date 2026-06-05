@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { VestidosService } from '../../services/vestidos';
-
+import { VentasService } from '../../services/ventas';
 @Component({
   selector: 'app-admin',
   imports: [FormsModule],
@@ -11,6 +11,7 @@ import { VestidosService } from '../../services/vestidos';
 export class Admin {
 
   vestidos: any[] = [];
+  ventas: any[] = [];
 
   vestido = {
     nombre: '',
@@ -25,10 +26,20 @@ export class Admin {
   editando = false;
   idEditando = '';
 
-  constructor(private vestidosService: VestidosService) {
+  constructor(private vestidosService: VestidosService, private ventasService: VentasService) {
     this.cargarVestidos();
+    this.cargarVentas();
   }
-
+  cargarVentas() {
+    this.ventasService.obtenerVentas().subscribe({
+      next: (datos) => {
+        this.ventas = datos;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
   cargarVestidos() {
     this.vestidosService.obtenerVestidos().subscribe({
       next: (datos) => {

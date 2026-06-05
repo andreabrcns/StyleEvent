@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FavoritosService } from '../../services/favoritos';
 import { RouterLink } from '@angular/router';
 import { VestidosService } from '../../services/vestidos';
+import { CategoriasService } from '../../services/categorias';
 
 @Component({
   selector: 'app-catalogo',
@@ -9,25 +10,41 @@ import { VestidosService } from '../../services/vestidos';
   templateUrl: './catalogo.html',
   styleUrl: './catalogo.css',
 })
-export class Catalogo {
+export class Catalogo implements OnInit {
 
   categoriaSeleccionada = 'Todos';
-  precioMaximo = 250;
+  precioMaximo = 500;
 
   vestidos: any[] = [];
+  categorias: any[] = [];
 
   constructor(
     public favoritosService: FavoritosService,
-    private vestidosService: VestidosService
-  ) {
+    private vestidosService: VestidosService,
+    private categoriasService: CategoriasService,
+    private cd: ChangeDetectorRef
+  ) {}
+
+  ngOnInit() {
     this.vestidosService.obtenerVestidos().subscribe({
       next: (datos) => {
         this.vestidos = datos;
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.log('Error al cargar vestidos', error);
       }
-    });;
+    });
+
+    this.categoriasService.obtenerCategorias().subscribe({
+      next: (datos) => {
+        this.categorias = datos;
+        this.cd.detectChanges();
+      },
+      error: (error) => {
+        console.log('Error al cargar categorias', error);
+      }
+    });
   }
 
   filtrarCategoria(categoria: string) {

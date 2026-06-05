@@ -4,14 +4,16 @@
         <h2>Filtros</h2>
 
         <button (click)="filtrarCategoria('Todos')">Todos</button>
-        <button (click)="filtrarCategoria('Boda de día')">Boda de día</button>
-        <button (click)="filtrarCategoria('Boda de noche')">Boda de noche</button>
-        <button (click)="filtrarCategoria('Graduación')">Graduación</button>
 
+        @for (categoria of categorias; track categoria.id) {
+        <button (click)="filtrarCategoria(categoria.nombre)">
+            {{ categoria.nombre }}
+        </button>
+        }
         <div class="filtro-precio">
             <h3>Precio máximo</h3>
 
-            <input type="range" min="0" max="250" step="10" [value]="precioMaximo" (input)="cambiarPrecio($event)">
+            <input type="range" min="0" max="500" step="10" [value]="precioMaximo" (input)="cambiarPrecio($event)">
 
             <p>{{ precioMaximo }} €</p>
         </div>

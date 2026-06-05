@@ -44,9 +44,36 @@
       </h2>
 
 
-      <button (click)="carritoService.vaciarCarrito()">
-        Finalizar compra
-      </button>
+      <div class="checkout">
+
+        <h3>Datos de envío</h3>
+
+        <input
+            type="text"
+            placeholder="Dirección de casa"
+            [(ngModel)]="direccion"
+            name="direccion"
+        >
+
+        <input
+            type="text"
+            placeholder="Ciudad"
+            [(ngModel)]="ciudad"
+            name="ciudad"
+        >
+
+        <input
+            type="text"
+            placeholder="Código postal"
+            [(ngModel)]="codigoPostal"
+            name="codigoPostal"
+        >
+
+        <h3>Pago con PayPal Sandbox</h3>
+
+        <div id="paypal-button-container"></div>
+
+        </div>
 
     </div>
 

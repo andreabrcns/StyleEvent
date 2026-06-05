@@ -97,6 +97,37 @@
                     }
                 </tbody>
             </table>
+            <div class="list-card">
+
+                <h2>Ventas realizadas</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Total</th>
+                            <th>Fecha</th>
+                            <th>Vestidos</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @for (venta of ventas; track venta.id) {
+                            <tr>
+                                <td>{{ venta.emailUsuario }}</td>
+                                <td>{{ venta.total }} €</td>
+                                <td>{{ venta.fecha }}</td>
+                                <td>
+                                @for (vestido of venta.vestidos; track vestido.vestidoId) {
+                                <p>{{ vestido.nombre }}</p>
+                                }
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+
+                </div>
 
         </div>
 

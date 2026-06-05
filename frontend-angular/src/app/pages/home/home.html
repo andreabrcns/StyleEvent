@@ -1,18 +1,79 @@
 <section class="hero">
-    <div class="hero-text">
-        <h1>Encuentra el vestido perfecto para cada ocasión</h1>
+  <div class="hero-text">
+    <span class="etiqueta">StyleEvent</span>
 
-        <p>
-            Descubre vestidos para bodas de día, bodas de noche, graduaciones y eventos
-            especiales con opciones adaptadas a tu estilo.
-        </p>
+    <h1>Encuentra el vestido perfecto para cada ocasión</h1>
 
-        <button routerLink="/catalogo">Ver catálogo</button>
+    <p>
+      Descubre vestidos para bodas de día, bodas de noche, graduaciones y eventos
+      especiales con opciones adaptadas a tu estilo.
+    </p>
+
+    <div class="hero-buttons">
+      <button routerLink="/catalogo">Ver catálogo</button>
+      <button class="secundario" routerLink="/login">Iniciar sesión</button>
+    </div>
+  </div>
+
+  <div class="hero-slider">
+    <img src="/assets/vestido1home.png" alt="Vestido boda de día">
+    <img src="/assets/vestido2home.png" alt="Vestido boda de noche">
+    <img src="/assets/vestido3home.png" alt="Vestido de graduación">
+  </div>
+</section>
+
+<section class="eventos">
+  <h2>Elige tu evento</h2>
+
+  <div class="eventos-grid">
+    <div class="evento-card">
+      <h3>Bodas de día</h3>
+      <p>Vestidos frescos, elegantes y con colores suaves.</p>
     </div>
 
-    <div class="hero-slider">
-        <img src="/assets/vestido1home.png" alt="Vestido boda de día">
-        <img src="/assets/vestido2home.png" alt="Vestido boda de noche">
-        <img src="/assets/vestido3home.png" alt="Vestido de graduación">
+    <div class="evento-card oscuro">
+      <h3>Bodas de noche</h3>
+      <p>Diseños sofisticados, tonos intensos y mucho estilo.</p>
     </div>
+
+    <div class="evento-card">
+      <h3>Graduaciones</h3>
+      <p>Looks juveniles, especiales y perfectos para celebrar.</p>
+    </div>
+  </div>
+</section>
+
+<section class="funciona">
+  <h2>Cómo funciona</h2>
+
+  <div class="pasos">
+    <div>
+      <span>1</span>
+      <h3>Busca</h3>
+      <p>Explora el catálogo y filtra según tu evento y presupuesto.</p>
+    </div>
+
+    <div>
+      <span>2</span>
+      <h3>Guarda</h3>
+      <p>Añade tus vestidos favoritos para verlos después.</p>
+    </div>
+
+    <div>
+      <span>3</span>
+      <h3>Compra</h3>
+      <p>Añade vestidos al carrito y finaliza tu selección.</p>
+    </div>
+  </div>
+</section>
+
+<section class="destacado">
+  <div>
+    <h2>Vestidos pensados para momentos únicos</h2>
+    <p>
+      StyleEvent te ayuda a encontrar opciones según el tipo de evento,
+      el estilo que buscas y el presupuesto que tengas.
+    </p>
+    <button routerLink="/catalogo">Descubrir vestidos</button>
+  </div>
 </section>
