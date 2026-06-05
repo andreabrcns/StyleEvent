@@ -3,77 +3,124 @@
   <h1>Mi carrito</h1>
 
   @if (carritoService.obtenerCarrito().length === 0) {
-    <p class="vacio">Todavía no tienes vestidos en el carrito.</p>
-  }
 
-
-  @for (vestido of carritoService.obtenerCarrito(); track vestido.vestidoId) {
-
-    <div class="carrito-card">
-
-      <img [src]="vestido.imagen">
-
-      <div class="info">
-
-        <h2>{{ vestido.nombre }}</h2>
-
-        <p>{{ vestido.categoria }}</p>
-
-        <span>{{ vestido.precio }} €</span>
-
-      </div>
-
-
-      <button (click)="carritoService.eliminarCarrito(vestido)">
-        Eliminar
-      </button>
-
-
+    <div class="carrito-vacio">
+      <h2>Tu carrito está vacío</h2>
+      <p>Añade tus vestidos favoritos para comenzar tu pedido.</p>
     </div>
 
   }
 
-
-
   @if (carritoService.obtenerCarrito().length > 0) {
 
-    <div class="total">
-
-      <h2>
-        Total: {{ carritoService.totalCarrito() }} €
-      </h2>
+    <div class="carrito-container">
 
 
-      <div class="checkout">
+      <div class="productos">
 
-        <h3>Datos de envío</h3>
 
-        <input
-            type="text"
-            placeholder="Dirección de casa"
-            [(ngModel)]="direccion"
-            name="direccion"
-        >
+        @for (vestido of carritoService.obtenerCarrito(); track vestido.vestidoId) {
 
-        <input
-            type="text"
-            placeholder="Ciudad"
-            [(ngModel)]="ciudad"
-            name="ciudad"
-        >
 
-        <input
-            type="text"
-            placeholder="Código postal"
-            [(ngModel)]="codigoPostal"
-            name="codigoPostal"
-        >
+        <div class="carrito-card">
 
-        <h3>Pago con PayPal Sandbox</h3>
+          <img [src]="vestido.imagen">
 
-        <div id="paypal-button-container"></div>
+
+          <div class="info">
+
+            <h2>{{ vestido.nombre }}</h2>
+
+            <p>{{ vestido.categoria }}</p>
+
+            <span>Precio unidad: {{ vestido.precio }} €</span>
+
+            <label>Cantidad</label>
+
+            <select
+            [(ngModel)]="vestido.cantidad"
+            (change)="carritoService.actualizarCantidad(vestido)"
+            >
+            <option [value]="1">1</option>
+            <option [value]="2">2</option>
+            <option [value]="3">3</option>
+            <option [value]="4">4</option>
+            <option [value]="5">5</option>
+            </select>
+
+            <span>
+            Subtotal: {{ vestido.precio * vestido.cantidad }} €
+            </span>
+
+
+            <button (click)="carritoService.eliminarCarrito(vestido)">
+              Eliminar
+            </button>
+
+          </div>
 
         </div>
+
+
+        }
+
+
+      </div>
+
+
+
+      <div class="resumen">
+
+        <h2>Resumen del pedido</h2>
+
+
+        <p>
+          Productos:
+          {{ carritoService.obtenerCarrito().length }}
+        </p>
+
+
+        <h3>
+          Total: {{ carritoService.totalCarrito() }} €
+        </h3>
+
+
+        <div class="checkout">
+
+          <h2>Datos de envío</h2>
+
+
+          <input
+          type="text"
+          placeholder="Dirección"
+          [(ngModel)]="direccion"
+          >
+
+
+          <input
+          type="text"
+          placeholder="Ciudad"
+          [(ngModel)]="ciudad"
+          >
+
+
+          <input
+          type="text"
+          placeholder="Código postal"
+          [(ngModel)]="codigoPostal"
+          >
+
+
+          <h2>Pago seguro</h2>
+
+          <div id="paypal-button-container"></div>
+
+
+        </div>
+
+
+      </div>
+
 
     </div>
 

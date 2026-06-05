@@ -48,7 +48,8 @@ export class CarritoService {
       precio: vestido.precio,
       categoria: vestido.categoria,
       imagen: vestido.imagen,
-      descripcion: vestido.descripcion
+      descripcion: vestido.descripcion,
+      cantidad:1
     };
 
     this.http.post<any>(this.apiUrl, producto).subscribe({
@@ -118,9 +119,15 @@ export class CarritoService {
     let total = 0;
 
     for (let vestido of this.carrito) {
-      total = total + vestido.precio;
+      const cantidad = vestido.cantidad || 1;
+      total = total + vestido.precio * cantidad;
     }
 
     return total;
+  }
+  actualizarCantidad(vestido: any) {
+    if (!vestido.cantidad) {
+      vestido.cantidad = 1;
+    }
   }
 }
