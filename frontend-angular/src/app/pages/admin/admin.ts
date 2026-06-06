@@ -49,6 +49,15 @@ export class Admin implements OnInit {
       }
     });
   }
+  calcularIngresos() {
+    let total = 0;
+
+    for (let venta of this.ventas) {
+      total = total + venta.total;
+    }
+
+    return total;
+  }
 
   cargarVestidos() {
     this.vestidosService.obtenerVestidos().subscribe({

@@ -1,38 +1,52 @@
 <section class="login-page">
 
+  <div class="login-layout">
+
+    <div class="login-info">
+      <span>StyleEvent</span>
+      <h2>Tu armario de eventos empieza aquí</h2>
+      <p>Accede para guardar favoritos, revisar tu carrito y continuar tus compras.</p>
+    </div>
+
     <div class="login-card">
 
-        <h1>Iniciar sesión</h1>
+      <h1>Iniciar sesión</h1>
 
-        <p>Accede a tu cuenta para guardar tus vestidos favoritos.</p>
+      <p>Accede a tu cuenta para guardar tus vestidos favoritos.</p>
 
-        <form>
+      <form>
 
-            <label>Email</label>
-            <input
-                type="email"
-                placeholder="Introduce tu email"
-                [(ngModel)]="email"
-                name="email"
-            >
-            <label>Contraseña</label>
-            <input
-                type="password"
-                placeholder="Introduce tu contraseña"
-                [(ngModel)]="password"
-                name="password"
-            >
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder="Introduce tu email"
+          [(ngModel)]="email"
+          name="email"
+        >
 
-            <button type="button" (click)="iniciarSesion()">Entrar</button>
-            <p class="mensaje">{{ mensaje }}</p>
+        <label>Contraseña</label>
+        <input
+          type="password"
+          placeholder="Introduce tu contraseña"
+          [(ngModel)]="password"
+          name="password"
+        >
 
-        </form>
+        <button type="button" (click)="iniciarSesion()">
+          Entrar
+        </button>
 
-        <span>
-            ¿No tienes cuenta?
-            <a routerLink="/registro">Regístrate</a>
-        </span>
+        <p class="mensaje">{{ mensaje }}</p>
+
+      </form>
+
+      <span>
+        ¿No tienes cuenta?
+        <a routerLink="/registro">Regístrate</a>
+      </span>
 
     </div>
+
+  </div>
 
 </section>

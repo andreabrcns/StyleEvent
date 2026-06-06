@@ -1,136 +1,164 @@
 <section class="admin-page">
 
+  <div class="admin-header">
+    <span>Panel privado</span>
     <h1>Panel de administración</h1>
+    <p>Gestiona vestidos, revisa ventas y controla el catálogo de StyleEvent.</p>
+  </div>
 
-    <p class="intro">
-        Desde aquí el administrador podrá gestionar los vestidos del catálogo.
-    </p>
+  <div class="stats-grid">
 
-    <div class="admin-container">
+    <div class="stat-card">
+      <h3>Vestidos</h3>
+      <p>{{ vestidos.length }}</p>
+      <span>productos registrados</span>
+    </div>
 
-        <div class="form-card">
+    <div class="stat-card">
+      <h3>Ventas</h3>
+      <p>{{ ventas.length }}</p>
+      <span>compras realizadas</span>
+    </div>
 
-            <h2>Añadir vestido</h2>
+    <div class="stat-card">
+      <h3>Ingresos</h3>
+      <p>{{ calcularIngresos() }} €</p>
+      <span>total vendido</span>
+    </div>
 
-            <form>
+  </div>
 
-                <label>Nombre del vestido</label>
-                <input
-                    type="text"
-                    placeholder="Ej: Vestido boda de noche"
-                    [(ngModel)]="vestido.nombre"
-                    name="nombre"
-                >
+  <div class="admin-container">
 
-                <label>Categoría</label>
-                <select
-                    [(ngModel)]="vestido.categoria"
-                    name="categoria"
-                >
-                    <option>Boda de día</option>
-                    <option>Boda de noche</option>
-                    <option>Graduación</option>
-                </select>
+    <div class="form-card">
 
-                <label>Precio</label>
-                <input
-                    type="number"
-                    placeholder="Ej: 159.99"
-                    [(ngModel)]="vestido.precio"
-                    name="precio"
-                >
+      <h2>{{ editando ? 'Editar vestido' : 'Añadir vestido' }}</h2>
 
-                <label>Imagen</label>
-                <input
-                    type="text"
-                    placeholder="/assets/vestido.png"
-                    [(ngModel)]="vestido.imagen"
-                    name="imagen"
-                >
+      <form>
 
-                <label>Descripción</label>
-                <textarea
-                    placeholder="Descripción del vestido"
-                    [(ngModel)]="vestido.descripcion"
-                    name="descripcion"
-                ></textarea>
+        <label>Nombre del vestido</label>
+        <input
+          type="text"
+          placeholder="Ej: Vestido boda de noche"
+          [(ngModel)]="vestido.nombre"
+          name="nombre"
+        >
 
-                <button type="button" (click)="anadirVestido()">
-                    {{ editando ? 'Guardar cambios' : 'Añadir vestido' }}
-                </button>
+        <label>Categoría</label>
+        <select
+          [(ngModel)]="vestido.categoria"
+          name="categoria"
+        >
+          <option>Boda de día</option>
+          <option>Boda de noche</option>
+          <option>Graduación</option>
+        </select>
 
-                <p class="mensaje">{{ mensaje }}</p>
+        <label>Precio</label>
+        <input
+          type="number"
+          placeholder="Ej: 159.99"
+          [(ngModel)]="vestido.precio"
+          name="precio"
+        >
 
-            </form>
+        <label>Imagen</label>
+        <input
+          type="text"
+          placeholder="/assets/vestido.png"
+          [(ngModel)]="vestido.imagen"
+          name="imagen"
+        >
 
-        </div>
+        <label>Descripción</label>
+        <textarea
+          placeholder="Descripción del vestido"
+          [(ngModel)]="vestido.descripcion"
+          name="descripcion"
+        ></textarea>
 
-        <div class="list-card">
+        <button type="button" (click)="anadirVestido()">
+          {{ editando ? 'Guardar cambios' : 'Añadir vestido' }}
+        </button>
 
-            <h2>Vestidos existentes</h2>
+        <p class="mensaje">{{ mensaje }}</p>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Vestido</th>
-                        <th>Categoría</th>
-                        <th>Precio</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @for (vestido of vestidos; track vestido.id) {
-                        <tr>
-                        <td>{{ vestido.nombre }}</td>
-                        <td>{{ vestido.categoria }}</td>
-                        <td>{{ vestido.precio }} €</td>
-                        <td>
-                            <button class="edit" (click)="editarVestido(vestido)">
-                                Editar
-                            </button>
-                            <button class="delete" (click)="eliminarVestido(vestido.id)">
-                                Eliminar
-                            </button>
-                        </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <div class="list-card">
-
-                <h2>Ventas realizadas</h2>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Usuario</th>
-                            <th>Total</th>
-                            <th>Fecha</th>
-                            <th>Vestidos</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @for (venta of ventas; track venta.id) {
-                            <tr>
-                                <td>{{ venta.emailUsuario }}</td>
-                                <td>{{ venta.total }} €</td>
-                                <td>{{ venta.fecha }}</td>
-                                <td>
-                                @for (vestido of venta.vestidos; track vestido.vestidoId) {
-                                <p>{{ vestido.nombre }}</p>
-                                }
-                                </td>
-                            </tr>
-                        }
-                        </tbody>
-                    </table>
-
-                </div>
-
-        </div>
+      </form>
 
     </div>
+
+    <div class="list-card">
+
+      <h2>Vestidos existentes</h2>
+
+      <div class="tabla-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Vestido</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (vestido of vestidos; track vestido.id) {
+              <tr>
+                <td>{{ vestido.nombre }}</td>
+                <td>{{ vestido.categoria }}</td>
+                <td>{{ vestido.precio }} €</td>
+                <td>
+                  <button class="edit" (click)="editarVestido(vestido)">
+                    Editar
+                  </button>
+
+                  <button class="delete" (click)="eliminarVestido(vestido.id)">
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="ventas-card">
+
+    <h2>Ventas realizadas</h2>
+
+    <div class="tabla-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Total</th>
+            <th>Fecha</th>
+            <th>Vestidos</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (venta of ventas; track venta.id) {
+            <tr>
+              <td>{{ venta.emailUsuario }}</td>
+              <td>{{ venta.total }} €</td>
+              <td>{{ venta.fecha }}</td>
+              <td>
+                @for (vestido of venta.vestidos; track vestido.vestidoId) {
+                  <p class="producto-vendido">{{ vestido.nombre }}</p>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+  </div>
 
 </section>
