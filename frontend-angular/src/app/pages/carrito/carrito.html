@@ -49,7 +49,7 @@
             </select>
 
             <span>
-            Subtotal: {{ vestido.precio * vestido.cantidad }} €
+            Subtotal: {{ vestido.precio * (vestido.cantidad || 1) }} €
             </span>
 
 

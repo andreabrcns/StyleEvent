@@ -117,3 +117,60 @@ height:400px;
 }
 
 }
+@media screen and (max-width: 768px) {
+
+  .carrito-page {
+    padding: 35px 18px;
+  }
+
+  .carrito-page h1 {
+    font-size: 42px;
+    line-height: 1.1;
+    margin-bottom: 35px;
+  }
+
+  .carrito-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .productos {
+    width: 100%;
+  }
+
+  .carrito-card {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .carrito-card img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+  }
+
+  .info {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .info h2 {
+    font-size: 25px;
+  }
+
+  .info select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0 18px;
+    border-radius: 10px;
+  }
+
+  .resumen {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .checkout input {
+    width: 100%;
+  }
+}

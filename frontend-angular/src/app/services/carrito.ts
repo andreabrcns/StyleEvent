@@ -24,7 +24,10 @@ export class CarritoService {
     if (usuario) {
       this.http.get<any[]>(`${this.apiUrl}/${usuario.id}`).subscribe({
         next: (datos) => {
-          this.carrito = datos;
+          this.carrito = datos.map(vestido => ({
+            ...vestido,
+            cantidad: vestido.cantidad || 1
+          }));
         },
         error: (error) => {
           console.log(error);
@@ -119,8 +122,7 @@ export class CarritoService {
     let total = 0;
 
     for (let vestido of this.carrito) {
-      const cantidad = vestido.cantidad || 1;
-      total = total + vestido.precio * cantidad;
+      total = total + vestido.precio * (vestido.cantidad || 1);
     }
 
     return total;

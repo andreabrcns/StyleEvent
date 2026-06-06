@@ -18,23 +18,51 @@
   </div>
 
   <div class="nav-right">
+
+    @if (authService.estaLogueado()) {
+
+      <span class="usuario">
+        Hola {{ authService.usuarioActual.nombre }}
+      </span>
+
+    }
+
+
     <a routerLink="/favoritos" class="heart">♡</a>
+
+
     <a routerLink="/carrito" class="heart">🛒</a>
+
+
     @if (!authService.estaLogueado()) {
-      <a routerLink="/login">Login</a>
+
+      <a routerLink="/login">
+        Login
+      </a>
+
     }
 
 
     @if (authService.esAdmin()) {
-      <a routerLink="/admin">Admin</a>
+
+      <a routerLink="/admin">
+        Admin
+      </a>
+
     }
 
 
     @if (authService.estaLogueado()) {
-      <button class="logout" (click)="cerrarSesion()">
+
+      <button
+        class="logout"
+        (click)="cerrarSesion()"
+      >
         Cerrar sesión
       </button>
+
     }
+
   </div>
 </nav>
 
